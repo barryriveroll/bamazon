@@ -1,0 +1,23 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Mock storefront using node.js and MySQL",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barryriveroll/bamazon.git"
+  },
+  "author": "Barry Riveroll",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barryriveroll/bamazon/issues"
+  },
+  "homepage": "https://github.com/barryriveroll/bamazon#readme",
+  "dependencies": {
+    "inquirer": "^6.2.1",
+    "mysql": "^2.16.0"
+  }
+}
