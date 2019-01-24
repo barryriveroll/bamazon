@@ -34,44 +34,45 @@ function startShop() {
       stockArray.push(element.stock_quantity);
     });
 
-    var nameLength = findLongestValue(nameArray, "Product Name");
-    var deptLength = findLongestValue(deptArray, "Department");
-    var priceLength = findLongestValue(priceArray, "Price");
-    var stockLength = findLongestValue(stockArray, "Quantity");
+    var nameLength = findLongestValue(nameArray, " Product Name ");
+    var deptLength = findLongestValue(deptArray, " Department ");
+    var priceLength = findLongestValue(priceArray, " Price ");
+    var stockLength = findLongestValue(stockArray, " Quantity ");
 
     var topText =
-      "| ID | " +
+      " |  ID  | " +
       nameLength +
-      " | " +
+      "   | " +
       deptLength +
-      " | " +
+      "   | " +
       priceLength +
-      " | " +
+      "   | " +
       stockLength +
-      " |";
-    console.log(topText);
-    var divisionLine = "";
-
-    for (var i = 0; i < topText.length; i++) {
+      "   |";
+    var divisionLine = " ";
+    for (var i = 0; i < topText.length - 1; i++) {
       if (
         i === 0 ||
-        i === 5 ||
-        i === nameLength.length + 8 ||
-        i === nameLength.length + deptLength.length + 11 ||
-        i === nameLength.length + deptLength.length + priceLength.length + 14 ||
+        i === 7 ||
+        i === nameLength.length + 12 ||
+        i === nameLength.length + deptLength.length + 17 ||
+        i === nameLength.length + deptLength.length + priceLength.length + 22 ||
         i ===
           nameLength.length +
             deptLength.length +
             priceLength.length +
             stockLength.length +
-            17
+            27
       ) {
         divisionLine += "|";
       } else {
         divisionLine += "-";
       }
     }
-    console.log(divisionLine);
+
+    console.log("\x1b[33m%s\x1b[0m", divisionLine);
+    console.log("\x1b[33m%s\x1b[0m", topText);
+    console.log("\x1b[33m%s\x1b[0m", divisionLine);
 
     for (var j = 0; j < results.length; j++) {
       // results.forEach(function(element) {
@@ -95,20 +96,31 @@ function startShop() {
       }
 
       console.log(
-        "| " +
-          idToPrint +
-          " | " +
-          nameToPrint +
-          " | " +
-          deptToPrint +
-          " | " +
-          priceToPrint +
-          " | " +
-          stockToPrint +
-          " |"
+        "\x1b[33m",
+        "|",
+        "\x1b[0m",
+        idToPrint,
+        "\x1b[33m",
+        "|",
+        "\x1b[0m",
+        nameToPrint,
+        "\x1b[33m",
+        "|",
+        "\x1b[0m",
+        deptToPrint,
+        "\x1b[33m",
+        "|",
+        "\x1b[0m",
+        priceToPrint,
+        "\x1b[33m",
+        "|",
+        "\x1b[0m",
+        stockToPrint,
+        "\x1b[33m",
+        "|"
       );
     }
-    console.log(divisionLine);
+    console.log("\x1b[33m%s\x1b[0m", divisionLine);
     inquirer
       .prompt([
         {
