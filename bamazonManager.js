@@ -68,11 +68,59 @@ function addNewProduct() {
         validate: function(name) {
           return !name.includes("e") && !isNaN(name);
         }
+      },
+      {
+        message: "Enter an initial stock quantity:",
+        name: "stock",
+        validate: function(name) {
+          return Number.isInteger(parseInt(name));
+        }
       }
     ])
     .then(function(response) {
-      console.log(response.price);
-      connection.end();
+      var newProduct = {
+        product_name: response.name,
+        department_name: response.department,
+        price: response.price,
+        stock_quantity: response.stock
+      };
+
+      console.log("Adding product to the store:");
+      console.log(
+        "| " +
+          newProduct.product_name +
+          " | " +
+          newProduct.department_name +
+          " | " +
+          newProduct.price +
+          " | " +
+          newProduct.stock_quantity
+      );
+
+      inquirer
+        .prompt([
+          {
+            type: "confirm",
+            message: "Confirm adding new product?",
+            name: "confirm"
+          }
+        ])
+        .then(function(confirmResponse) {
+          if (confirmResponse.confirm) {
+            var query = connection.query(
+              "INSERT INTO products SET ?",
+              {
+                product_name: newProduct.product_name,
+                department_name: newProduct.department_name,
+                price: newProduct.price,
+                stock_quantity: newProduct.stock_quantity
+              },
+              function(err, res) {
+                startManager();
+              }
+            );
+          }
+        });
     });
 }
 
