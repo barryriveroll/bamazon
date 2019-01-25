@@ -201,14 +201,18 @@ function updateInventory(itemToBuy) {
       } else {
         var totalCost = itemToBuy.price * response.amount;
         console.log(
-          "Ordering:\n" +
+          "\x1b[33m",
+          "Purchasing: ",
+          "\x1b[0m",
+          response.amount +
+            " " +
             itemToBuy.product_name +
-            "\nQty: " +
-            response.amount +
-            "\nPrice: $" +
-            itemToBuy.price +
-            "\nTotal: $" +
-            totalCost
+            " $" +
+            itemToBuy.price.toFixed(2) +
+            "\x1b[33m",
+          "\n Total Cost: ",
+          "\x1b[0m",
+          "$" + totalCost.toFixed(2)
         );
 
         inquirer
@@ -234,12 +238,13 @@ function updateInventory(itemToBuy) {
                 ],
                 function(err, res) {
                   if (err) throw err;
-                  connection.end();
-                  // startShop();
+                  console.log("Purchase complete!");
+                  startShop();
                 }
               );
             } else {
-              // NO CONFIRMATION
+              console.log("Purchase cancelled.");
+              startShop();
             }
           });
       }
